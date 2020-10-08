@@ -1,0 +1,10 @@
+#We want to block 161/udp port on web1 node permanently. Make a playbook block.yml
+---
+- hosts: web1
+  tasks:
+    - firewalld:
+        port: 161/udp
+        zone: block
+        permanent: yes
+        immediate: yes
+        state: enabled

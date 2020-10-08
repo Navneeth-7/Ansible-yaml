@@ -1,0 +1,10 @@
+# We had a different cron earlier by the name Check Memory, to execute a different script - /root/free.sh on node00. That job was configured to run every 1 hour. However as we have now a new Cronjob configured let us get rid of the old one. Create a playbook ~/playbooks/remove_cron.yml to remove this cron from node00.
+
+---
+- name: remove cron job from node00
+  hosts: node00
+  tasks:
+  - name: Remove cron job
+    cron:
+      name: "Check Memory"
+      state: absent

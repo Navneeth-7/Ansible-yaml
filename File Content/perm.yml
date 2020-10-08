@@ -1,0 +1,8 @@
+# Create a playbook ~/playbooks/perm.yml to create a blank file /opt/data/perm.txt with 0640 permissions on web1 node
+---
+- hosts: web1
+  tasks:
+   - file:
+       path: /opt/data/perm.txt
+       state: touch
+       mode: 0640

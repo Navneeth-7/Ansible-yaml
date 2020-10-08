@@ -1,0 +1,9 @@
+#Using a playbook ~/playbooks/index1.yml create /var/www/html/index.html file on web1 node with content This line was added using Ansible lineinfile module!.\
+
+---
+- hosts: web1
+  tasks:
+   - lineinfile:
+        path: /var/www/html/index.html
+        line: This line was added using Ansible lineinfile module
+        create: yes

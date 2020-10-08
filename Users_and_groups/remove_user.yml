@@ -1,0 +1,18 @@
+# The admin user you created earlier got compromised for some reason, and you need to remove it asap from the system.
+
+
+# Write a playbook remove_user.yml to remove the admin account created earlier in the earlier step.
+
+# Remember, your playbook must be placed inside /home/thor/playbooks and use inventory file there.
+
+---
+- hosts: all
+  gather_facts: no
+  tasks:
+    - user:
+        name: 'admin'
+        state: absent
+    - group:
+        name: 'admin'
+        state: absent
+		

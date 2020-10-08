@@ -1,0 +1,13 @@
+<!-- Create an inventory file under ~/playbooks directory on Ansible controller host and add web1 as managed node. IP address of web1 node is 172.20.1.100, SSH user is root and password is Passw0rd. -->
+
+
+<!-- Create a playbook ~/playbooks/zip.yml to make a zip archive opt.zip of /opt directory on web1 node and save it under /root on web1 node itse -->
+
+---
+- name: Zip archive opt.zip
+  hosts: web1
+  tasks:
+   - archive:
+       path: /opt
+       dest: /root/opt.zip
+       format: zip

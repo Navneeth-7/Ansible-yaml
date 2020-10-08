@@ -1,0 +1,12 @@
+---
+- hosts: web1
+  tasks:
+   - yum:
+      name: nginx
+      state: installed
+   - service:
+      name: nginx
+      state: started
+      enabled: yes
+
+

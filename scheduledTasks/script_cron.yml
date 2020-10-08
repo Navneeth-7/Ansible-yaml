@@ -1,0 +1,15 @@
+# We have a script /root/free.sh on node00 that is used to check free system memory. We would like to create a cron Free Memory Check to execute this script at every 2 hour (i.e 12am, 2am, 4am etc), the command to execute the script is sh /root/free.sh and schedule should be 0 */2 * * *.
+
+
+# You can create a playbook ~/playbooks/script_cron.yml for this.
+
+---
+- name: Create a cron job to run free.sh script
+  hosts: node00
+  tasks:
+   - name: Create cron job
+     cron:
+       name: "Free Memory Check"
+       minute: "0"
+       hour: "*/2"
+       job: "sh /root/free.sh"

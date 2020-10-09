@@ -1,0 +1,14 @@
+# On web1 node we want to run our httpd server on port 8080. Create a playbook ~/playbooks/httpd.yml to change port 80 to 8080 in /etc/httpd/conf/httpd.conf file using replace module. Also make sure Ansible restarts httpd service after making the change.
+
+
+# Listen 80 is the parameter that need to be changes in /etc/httpd/conf/httpd.conf
+
+---
+- name: replace port 80 to 8080
+  hosts: web1
+  tasks:
+  - replace:
+      path: /etc/httpd/conf/httpd.conf
+      regexp: 'Listen 80'
+      replace: 'Listen 8080'
+  - service: name=httpd state=restarted

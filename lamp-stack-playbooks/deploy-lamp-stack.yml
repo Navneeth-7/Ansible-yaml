@@ -1,14 +1,22 @@
 ---
+<<<<<<< HEAD
 - name: Deploy lamp stack application
   hosts: all
   become: yes
   tasks:
     - name: Install common dependencies
       yum:
+=======
+- hosts: all
+  become: yes        
+  tasks:
+    - yum: 
+>>>>>>> b02d4807d2164c9529f2886f0cd493388b0d8796
         name:
           - libselinux-python
           - libsemanage-python
           - firewalld
+<<<<<<< HEAD
         state: installed
 
 # Install and Configure Database
@@ -55,10 +63,58 @@
   tasks:
     - name: Install httpd and php
       yum:
+=======
+        state: installed 
+- hosts: lamp-db
+  become: yes
+  tasks:
+    - yum:
+        name: 
+          - mariadb-server
+          - MySQL-python
+
+        state: installed
+    - copy:
+        src: files/my.cnf
+        dest: /etc/my.cnf
+
+    - service:
+        name: mariadb
+        state: started
+        enabled: yes
+    - service:
+        name: firewalld
+        state: started
+        enabled: yes
+    - firewalld:
+        port: "{{ mysql_port }}/tcp"
+        zone: public
+        immediate: yes
+        state: enabled
+
+    - mysql_db:
+        name: "{{ dbname }}"
+        state: present
+    - mysql_user:
+        name: "{{ dbuser }}"
+        password: "{{ dbpassword }}"
+        host: 172.20.1.100
+        priv: "*.*:ALL"
+        state: present
+    - copy:
+        src: files/db-load-script.sql
+        dest: /tmp/db-load-script.sql
+    - shell: mysql -f < /tmp/db-load-script.sql   
+- hosts: lamp-web
+  become: yes
+  tasks:
+    - yum:
+>>>>>>> b02d4807d2164c9529f2886f0cd493388b0d8796
         name:
           - httpd
           - php
           - php-mysql
+<<<<<<< HEAD
         state: present
 
     - name: Install web role specific dependencies
@@ -85,3 +141,31 @@
 
     - name: Creates the index.php file
       template: src=templates/index.php.j2 dest=/var/www/html/index.php
+=======
+          - git
+        state: installed
+    - service:
+        name: firewalld
+        state: started
+        enabled: yes
+    - firewalld:
+        port: "{{ httpd_port }}/tcp"
+        immediate: yes
+        permanent: true
+        state: enabled
+    - replace:
+        path: /etc/httpd/conf/httpd.conf
+        regexp: DirectoryIndex index.html
+        replace: DirectoryIndex index.php
+    - service:
+        name: httpd
+        state: started
+    - git:
+        repo: "{{ repository }}"
+        dest: /var/www/html/
+        force: yes
+    - copy:
+        src: files/index.php 
+        dest: /var/www/html/index.php
+ 
+>>>>>>> b02d4807d2164c9529f2886f0cd493388b0d8796

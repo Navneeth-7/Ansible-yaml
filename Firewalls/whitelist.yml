@@ -1,0 +1,10 @@
+#We have a requirement on web1 node to white list web2 node's IP address 172.20.1.101 in firewall
+---
+- hosts: web1
+  tasks:
+   - firewalld:
+       source: 172.20.1.101
+       state: enabled
+       zone: internal
+       permanent: yes
+       immediate: yes

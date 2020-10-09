@@ -21,7 +21,11 @@
 
         <!-- Theme style CSS -->
         <link href="css/style.css" rel="stylesheet">
+<<<<<<< HEAD
 <!--        <link href="css/responsive.css" rel="stylesheet">  -->
+=======
+        <!--  <link href="css/responsive.css" rel="stylesheet">  -->
+>>>>>>> b02d4807d2164c9529f2886f0cd493388b0d8796
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesnt work if you view the page via file:// -->

@@ -1,0 +1,15 @@
+# Write a playbook create_user.yml to create a user named admin with group: admin and uid: 2048
+
+# NOTE: Your playbook must be placed inside folder: /home/thor/playbooks/. Run this playbook for all servers which are listed in /home/thor/playbooks/inventory file.
+
+---
+- hosts: all
+  gather_facts: no
+  tasks:
+    - group:
+        name: 'admin'
+        state: present
+    - user:
+        name: 'admin'
+        uid: 2048
+        group: 'admin'

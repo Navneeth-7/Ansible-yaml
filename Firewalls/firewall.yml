@@ -1,0 +1,11 @@
+#Using an Ansible playbook install firewalld on web1 node, start and enable its service as well. Name the playbook as firewall.yml
+---
+- hosts: web1
+  tasks:
+   - yum:
+       name: firewalld
+       state: installed
+   - service:
+       name: firewalld
+       state: started
+       enabled: yes

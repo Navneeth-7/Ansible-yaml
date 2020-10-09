@@ -1,0 +1,12 @@
+---
+- hosts: all
+  gather_facts: no
+  tasks:
+    - name: Make changes in Apache config
+      replace:
+        path: /etc/httpd/conf/httpd.conf
+        regexp: "^Listen 80"
+        replace: "Listen 443"
+    - service: 
+        name: httpd
+        state: restarted

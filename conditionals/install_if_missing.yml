@@ -1,0 +1,12 @@
+---
+- hosts: web2
+  gather_facts: false
+  tasks:
+    - shell: dpkg -l git
+      register: check_if_git_installed
+      ignore_errors: true
+
+    # your code goes here...
+    # - debug: var=check_if_git_installed
+
+

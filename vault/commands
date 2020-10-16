@@ -1,2 +1,3 @@
 ansible-vault decrypt decrypt_me.yml --vault-password-file=vault_pass.txt  --> to decrypt
 
+nsible-playbook copy_secrets.yml -i inventory --vault-password-file=vault_pass.txt   ----> to run ansible play book with vault password file

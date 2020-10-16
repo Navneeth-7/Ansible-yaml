@@ -1,0 +1,2 @@
+ansible-vault decrypt decrypt_me.yml --vault-password-file=vault_pass.txt  --> to decrypt
+

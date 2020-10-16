@@ -1,0 +1,4 @@
+- name: Deploy Web Server
+  hosts: web_server
+  roles:
+    - geerlingguy.nginx
